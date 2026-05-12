@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Pench Delivery",
+    "slug": "pench-delivery",
+    "scheme": "penchdelivery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#111827"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Pench Delivery needs your location to update live delivery status and route tracking.",
+          "locationWhenInUsePermission": "Pench Delivery needs your location for active assignments.",
+          "isAndroidBackgroundEnabled": true
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#111827"
+      },
+      "package": "com.penchfoods.deliveryapp",
+      "versionCode": 2,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.penchfoods.deliveryapp",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow Pench Delivery to use your location for deliveries."
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "extra": {
+      "appVariant": "delivery",
+      "apiBaseUrl": "https://api.somesh-portfolio.online/api/v1",
+      "mapProvider": "osm"
+    }
+  }
+}

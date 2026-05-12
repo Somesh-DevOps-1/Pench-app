@@ -1,0 +1,26 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": [
+      "nativewind/types"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "delivery-app/**/*.js",
+    "delivery-app/**/*.jsx",
+    "index.js",
+    "nativewind-env.d.ts",
+    "expo-env.d.ts",
+    ".expo/types/**/*.ts"
+  ]
+}

@@ -7,7 +7,7 @@ ENV EXPO_NO_TELEMETRY=1
 ENV EXPO_PUBLIC_APP_VARIANT=delivery
 
 COPY package*.json ./
-RUN npm ci
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
 
 COPY . .
 

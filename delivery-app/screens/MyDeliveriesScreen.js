@@ -6,7 +6,7 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Colors } from '../../src/theme/colors';
+import { Colors } from '../src/theme/colors';
 import { DELIVERY_ASSIGNMENTS } from '../data/deliveryData';
 import DeliveryBrandLogo from '../components/DeliveryBrandLogo';
 

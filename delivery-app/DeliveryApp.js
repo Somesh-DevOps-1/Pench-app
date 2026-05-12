@@ -3,16 +3,16 @@ import { Animated, View, Text, TouchableOpacity, StyleSheet } from 'react-native
 import { registerRootComponent } from 'expo';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { AppProviders } from '../src/providers/AppProviders';
-import { useSelector } from '../src/store';
-import { Colors } from '../src/theme/colors';
+import { AppProviders } from './src/providers/AppProviders';
+import { useSelector } from './src/store';
+import { Colors } from './src/theme/colors';
 import DeliveryDashboardScreen from './screens/DeliveryDashboardScreen';
 import MyDeliveriesScreen from './screens/MyDeliveriesScreen';
 import BottleCollectionsScreen from './screens/BottleCollectionsScreen';
 import DeliveryProfileScreen from './screens/DeliveryProfileScreen';
 import DeliveryLoginScreen from './screens/DeliveryLoginScreen';
 import DeliverySplashScreen from './screens/DeliverySplashScreen';
-import OrderTrackingScreen from '../src/screens/orders/OrderTrackingScreen';
+import OrderTrackingScreen from './src/screens/orders/OrderTrackingScreen';
 
 const DELIVERY_TABS = [
   { key: 'dashboard', label: 'Dashboard', icon: 'view-dashboard', screen: DeliveryDashboardScreen },

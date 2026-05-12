@@ -6,10 +6,10 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSelector, useDispatch } from '../../src/store';
-import { updateProfile } from '../../src/store/slices/authSlice';
-import { Colors } from '../../src/theme/colors';
-import { PENCH_WAREHOUSE } from '../../src/data/mockData';
+import { useSelector, useDispatch } from '../src/store';
+import { updateProfile } from '../src/store/slices/authSlice';
+import { Colors } from '../src/theme/colors';
+import { PENCH_WAREHOUSE } from '../src/data/mockData';
 import { DELIVERY_ASSIGNMENTS } from '../data/deliveryData';
 import DeliveryBrandLogo from '../components/DeliveryBrandLogo';
 

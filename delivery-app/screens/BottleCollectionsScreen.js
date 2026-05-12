@@ -6,10 +6,10 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '../../src/theme/colors';
+import { Colors } from '../src/theme/colors';
 import { DELIVERY_ASSIGNMENTS } from '../data/deliveryData';
 import DeliveryBrandLogo from '../components/DeliveryBrandLogo';
-import { deliveryApi } from '../../src/services/api';
+import { deliveryApi } from '../src/services/api';
 
 function toNumber(value) {
   const parsed = Number.parseInt(value, 10);

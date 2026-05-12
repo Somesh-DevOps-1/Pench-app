@@ -6,11 +6,11 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useDispatch, useSelector } from '../../src/store';
-import { logout } from '../../src/store/slices/authSlice';
-import { Colors } from '../../src/theme/colors';
+import { useDispatch, useSelector } from '../src/store';
+import { logout } from '../src/store/slices/authSlice';
+import { Colors } from '../src/theme/colors';
 import { DELIVERY_ASSIGNMENTS } from '../data/deliveryData';
-import { clearStoredSession } from '../../src/utils/storage';
+import { clearStoredSession } from '../src/utils/storage';
 import DeliveryBrandLogo from '../components/DeliveryBrandLogo';
 
 export default function DeliveryProfileScreen({ navigation }) {

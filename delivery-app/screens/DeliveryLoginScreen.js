@@ -14,12 +14,12 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useDispatch } from '../../src/store';
-import { loginSuccess, setPhone } from '../../src/store/slices/authSlice';
-import { USER_ROLES } from '../../src/utils/auth';
-import { setStoredSession } from '../../src/utils/storage';
-import { Colors } from '../../src/theme/colors';
-import { authApi } from '../../src/services/api';
+import { useDispatch } from '../src/store';
+import { loginSuccess, setPhone } from '../src/store/slices/authSlice';
+import { USER_ROLES } from '../src/utils/auth';
+import { setStoredSession } from '../src/utils/storage';
+import { Colors } from '../src/theme/colors';
+import { authApi } from '../src/services/api';
 import DeliveryBrandLogo from '../components/DeliveryBrandLogo';
 
 const DEMO_USERNAME = 'delivery';
