@@ -1,0 +1,14 @@
+node_modules
+delivery-app/node_modules
+.expo
+dist
+web-build
+.git
+.gitignore
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.tsbuildinfo
+.env.local
+firebase-service-account*.json
+google-service-account*.json
