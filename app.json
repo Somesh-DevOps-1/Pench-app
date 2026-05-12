@@ -1,29 +1,57 @@
 {
   "expo": {
-    "name": "PenchMilkApp",
-    "slug": "PenchMilkApp",
+    "name": "Pench Foods",
+    "slug": "pench-foods",
+    "scheme": "penchfoods",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1B5E20"
     },
-    "ios": {
-      "supportsTablet": true
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Pench Foods needs your location to detect the nearest delivery zones and track active deliveries for partners.",
+          "locationWhenInUsePermission": "Pench Foods needs your location to automatically set your delivery address.",
+          "isAndroidBackgroundEnabled": true
+        }
+      ],
+      "expo-secure-store",
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1B5E20"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.penchfoods.milkapp",
+      "versionCode": 2,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE"
+      ]
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.penchfoods.milkapp",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Allow Pench Foods to use your location for delivery."
+      }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     }
   }
 }

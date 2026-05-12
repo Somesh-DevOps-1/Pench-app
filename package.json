@@ -4,15 +4,57 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start",
+    "start:customer": "set EXPO_PUBLIC_APP_VARIANT=customer&& expo start",
+    "start:delivery": "set EXPO_PUBLIC_APP_VARIANT=delivery&& expo start",
     "android": "expo start --android",
+    "android:customer": "set EXPO_PUBLIC_APP_VARIANT=customer&& expo start --android",
+    "android:delivery": "set EXPO_PUBLIC_APP_VARIANT=delivery&& expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "ios:customer": "set EXPO_PUBLIC_APP_VARIANT=customer&& expo start --ios",
+    "ios:delivery": "set EXPO_PUBLIC_APP_VARIANT=delivery&& expo start --ios",
+    "web": "expo start --web",
+    "web:customer": "set EXPO_PUBLIC_APP_VARIANT=customer&& expo start --web",
+    "web:delivery": "set EXPO_PUBLIC_APP_VARIANT=delivery&& expo start --web",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-navigation/bottom-tabs": "^7.15.11",
+    "@react-navigation/drawer": "^7.9.9",
+    "@react-navigation/native": "^7.2.2",
+    "@react-navigation/stack": "^7.8.11",
+    "@tanstack/react-query": "^5.100.9",
+    "babel-preset-expo": "~54.0.10",
     "expo": "~54.0.33",
+    "expo-constants": "~18.0.13",
+    "expo-linear-gradient": "~15.0.8",
+    "expo-linking": "~8.0.12",
+    "expo-location": "~19.0.8",
+    "expo-notifications": "~0.32.17",
+    "expo-router": "~6.0.23",
+    "expo-secure-store": "~15.0.8",
     "expo-status-bar": "~3.0.9",
+    "lottie-react-native": "^7.3.6",
+    "nativewind": "^4.2.3",
     "react": "19.1.0",
-    "react-native": "0.81.5"
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-maps": "1.20.1",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-svg": "15.12.1",
+    "react-native-vector-icons": "^10.3.0",
+    "react-native-web": "^0.21.0",
+    "zustand": "^5.0.13"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
 }

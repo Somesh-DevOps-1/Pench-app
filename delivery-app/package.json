@@ -1,0 +1,12 @@
+{
+  "name": "penchmilk-delivery-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "../index.js",
+  "scripts": {
+    "start": "npm --prefix .. run start:delivery -- --port 8084",
+    "android": "npm --prefix .. run android:delivery -- --port 8084",
+    "web": "npm --prefix .. run web:delivery -- --port 8084",
+    "typecheck": "tsc --noEmit -p ../tsconfig.json"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "690531225533",
+    "project_id": "pench-milk",
+    "storage_bucket": "pench-milk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690531225533:android:77490665a7dd687c860cd4",
+        "android_client_info": {
+          "package_name": "com.penchfood.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR5sv7LbDQ4Zz5Ykr-cSTSRiC1hs5ivvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

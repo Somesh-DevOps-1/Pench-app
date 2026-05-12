@@ -1,0 +1,112 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pench_milk}
+      POSTGRES_USER: ${POSTGRES_USER:-pench_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.production}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pench_net
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - pench_net
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env.production
+    environment:
+      DB_HOST: postgres
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - /opt/penchmilk/secrets/firebase-service-account.json:/run/secrets/firebase-service-account.json:ro
+      - static_data:/app/staticfiles
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:8000 --timeout 120"
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - pench_net
+
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    restart: unless-stopped
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/penchmilk:/opt/penchmilk
+    networks:
+      - pench_net
+
+  sonarqube:
+    image: sonarqube:community
+    restart: unless-stopped
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - pench_net
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./ops/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - pench_net
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Set GRAFANA_ADMIN_PASSWORD in .env.production}
+      GF_SERVER_ROOT_URL: http://44.204.146.166:3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - pench_net
+
+networks:
+  pench_net:
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_data:
+  jenkins_home:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
+  prometheus_data:
+  grafana_data:
