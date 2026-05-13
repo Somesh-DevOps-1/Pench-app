@@ -8,6 +8,7 @@ services:
       - ./.env
     environment:
       EXPO_PUBLIC_APP_VARIANT: customer
+      EXPO_PUBLIC_API_BASE_URL: ${CUSTOMER_API_BASE_URL:-${BACKEND_API_BASE_URL:-https://somesh-portfolio.online/api}}
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     ports:
@@ -27,6 +28,7 @@ services:
       - ./.env
     environment:
       EXPO_PUBLIC_APP_VARIANT: delivery
+      EXPO_PUBLIC_API_BASE_URL: ${DELIVERY_API_BASE_URL:-${BACKEND_API_BASE_URL:-https://somesh-portfolio.online/api}}
       CHOKIDAR_USEPOLLING: "true"
       WATCHPACK_POLLING: "true"
     ports:

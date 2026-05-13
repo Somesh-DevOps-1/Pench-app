@@ -44,6 +44,40 @@ services:
     networks:
       - pench_net
 
+  customer-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      EXPO_PUBLIC_APP_VARIANT: customer
+      EXPO_PUBLIC_API_BASE_URL: ${CUSTOMER_API_BASE_URL:-${BACKEND_API_BASE_URL:-https://somesh-portfolio.online/api}}
+    ports:
+      - "127.0.0.1:${CUSTOMER_APP_PORT:-8081}:8081"
+    depends_on:
+      - backend
+    networks:
+      - pench_net
+
+  delivery-app:
+    build:
+      context: .
+      dockerfile: delivery-app/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      EXPO_PUBLIC_APP_VARIANT: delivery
+      EXPO_PUBLIC_API_BASE_URL: ${DELIVERY_API_BASE_URL:-${BACKEND_API_BASE_URL:-https://somesh-portfolio.online/api}}
+    ports:
+      - "127.0.0.1:${DELIVERY_APP_PORT:-8084}:8084"
+    depends_on:
+      - backend
+    networks:
+      - pench_net
+
   jenkins:
     image: jenkins/jenkins:lts-jdk17
     restart: unless-stopped

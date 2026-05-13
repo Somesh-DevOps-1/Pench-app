@@ -35,7 +35,9 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_BACKGROUND_LOCATION",
         "CAMERA",
-        "READ_EXTERNAL_STORAGE"
+        "READ_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
       ]
     },
     "ios": {
@@ -52,7 +54,10 @@
     "extra": {
       "appVariant": "delivery",
       "apiBaseUrl": "https://api.somesh-portfolio.online/api/v1",
-      "mapProvider": "osm"
+      "mapProvider": "osm",
+      "eas": {
+        "projectId": "0c41485c-ebcf-48ce-8eb8-06b066405512"
+      }
     }
   }
 }

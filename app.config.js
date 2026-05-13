@@ -4,10 +4,29 @@ const baseConfig = require('./app.json');
 const variant = process.env.EXPO_PUBLIC_APP_VARIANT || 'customer';
 const isDelivery = variant === 'delivery';
 const isProduction = process.env.NODE_ENV === 'production' || process.env.EXPO_PUBLIC_ENV === 'production';
+const apiBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL || 'http://localhost:8000/api/v1';
+const androidPackage = isDelivery ? 'com.penchfoods.deliveryapp' : baseConfig.expo.android.package;
 const googleServicesFile = isDelivery
   ? process.env.EXPO_PUBLIC_DELIVERY_GOOGLE_SERVICES_FILE || './delivery-app/google-services.json'
   : process.env.EXPO_PUBLIC_GOOGLE_SERVICES_FILE || './google-services.json';
-const androidGoogleServicesConfig = fs.existsSync(googleServicesFile)
+const hasMatchingGoogleServicesClient = (filePath, packageName) => {
+  if (!fs.existsSync(filePath)) {
+    return false;
+  }
+
+  try {
+    const googleServices = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return (googleServices.client || []).some(
+      (client) => client?.client_info?.android_client_info?.package_name === packageName
+    );
+  } catch {
+    return false;
+  }
+};
+const androidGoogleServicesConfig = hasMatchingGoogleServicesClient(
+  googleServicesFile,
+  androidPackage
+)
   ? { googleServicesFile }
   : {};
 
@@ -19,8 +38,8 @@ module.exports = {
     scheme: isDelivery ? 'penchdelivery' : baseConfig.expo.scheme,
     android: {
       ...baseConfig.expo.android,
-      package: isDelivery ? 'com.penchfoods.deliveryapp' : baseConfig.expo.android.package,
-      usesCleartextTraffic: !isProduction,
+      package: androidPackage,
+      usesCleartextTraffic: !isProduction || apiBaseUrl.startsWith('http://'),
       ...androidGoogleServicesConfig,
     },
     ios: {
@@ -32,7 +51,7 @@ module.exports = {
     extra: {
       ...(baseConfig.expo.extra || {}),
       appVariant: variant,
-      apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'http://localhost:8000/api/v1',
+      apiBaseUrl,
       mapProvider: process.env.EXPO_PUBLIC_MAP_PROVIDER || 'osm',
       ...(isDelivery
         ? (process.env.EXPO_PUBLIC_DELIVERY_EAS_PROJECT_ID
