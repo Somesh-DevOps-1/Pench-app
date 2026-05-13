@@ -34,6 +34,21 @@ module.exports = {
       appVariant: variant,
       apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'http://localhost:8000/api/v1',
       mapProvider: process.env.EXPO_PUBLIC_MAP_PROVIDER || 'osm',
+      ...(isDelivery
+        ? (process.env.EXPO_PUBLIC_DELIVERY_EAS_PROJECT_ID
+            ? {
+                eas: {
+                  projectId: process.env.EXPO_PUBLIC_DELIVERY_EAS_PROJECT_ID,
+                },
+              }
+            : {})
+        : {
+            eas: {
+              projectId:
+                process.env.EXPO_PUBLIC_EAS_PROJECT_ID ||
+                'b6b6e356-e5e6-40f0-93af-3b33b4f3553d',
+            },
+          }),
     },
   },
 };
